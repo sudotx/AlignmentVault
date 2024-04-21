@@ -20,7 +20,7 @@ import {INFTXRouter} from "../lib/nftx-protocol-v3/src/interfaces/INFTXRouter.so
 import {ISwapRouter} from "../lib/nftx-protocol-v3/src/uniswap/v3-periphery/interfaces/ISwapRouter.sol";
 
 contract AlignmentVaultTest is Test {
-    uint256 private constant NFTX_STANDARD_FEE = 30000000000000000;
+    uint256 private constant NFTX_STANDARD_FEE = 30_000_000_000_000_000;
     IWETH9 public constant WETH = IWETH9(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
     //@audit  is upgradable
     //@audit pay attention to this integration
@@ -45,10 +45,10 @@ contract AlignmentVaultTest is Test {
     address public alignedNft;
 
     uint256[] public none = new uint256[](0);
-    int24 public constant MIN_TICK = -887272;
-    int24 public constant MAX_TICK = 887272;
+    int24 public constant MIN_TICK = -887_272;
+    int24 public constant MAX_TICK = 887_272;
     uint24 public constant STANDARD_FEE = 3000;
-    uint24 public constant FIVE_PERCENT = 50000;
+    uint24 public constant FIVE_PERCENT = 50_000;
     address public constant MILADY = 0x5Af0D9827E0c53E4799BB226655A1de152A425a5;
     uint256 public constant VAULT_ID = 5;
 
@@ -103,7 +103,7 @@ contract AlignmentVaultTest is Test {
             }
         }
         uint256 ethRequired =
-            FixedPointMathLib.fullMulDivUp(INFTXVaultV3(vault).vTokenToETH(tokenCount * 1 ether), 30000, 1000000);
+            FixedPointMathLib.fullMulDivUp(INFTXVaultV3(vault).vTokenToETH(tokenCount * 1 ether), 30_000, 1_000_000);
         INFTXVaultV3(vault).mint{value: ethRequired}(tokenIds, amounts, address(this), address(this));
     }
 
@@ -169,47 +169,21 @@ contract AlignmentVaultTest is Test {
         av.rescueERC721(address(0), 1, address(0));
     }
 
-    // /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
-    // //                  ALIGNED TOKEN MANAGEMENT
-    // /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
+    //                  ALIGNED TOKEN MANAGEMENT
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
 
-    // function testBuyNftsFromPool() public {}
-    // function testMintVToken() public {}
-    // function testBuyVToken() public {}
-    // function testBuyVTokenExact() public {}
-    // function testSellVToken() public {}
-    // function testSellVTokenExact() public {}
-    // function testUnwrapEth() public {}
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
+    //                  LIQUIDITY POSITION MANAGEMENT
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
 
-    // /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
-    // //                  LIQUIDITY POSITION MANAGEMENT
-    // /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
+    //                  INVENTORY POSITION MANAGEMENT
+    //*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
 
-    // function testliquidityPositionCreatename() public {}
-    // function testliquidityPositionIncrease() public {}
-
-    // /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
-    // //                  INVENTORY POSITION MANAGEMENT
-    // /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
-
-    // function testInventoryPositionCreateVToken() public {}
-    // function testInventoryPositionCreateNfts() public {}
-    // function testInventoryPositionIncrease() public {}
-    // function testInventoryPositionWithdrawal() public {}
-    // function testInventoryPositionCombine() public {}
-    // function testInventoryPositionCollectFees() public {}
-    // function testInventoryPositionCollectAllFees() public {}
-
-    // /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
-    // //                  EXTERNAL DONATION MANAGEMENT
-    // /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
-
-    // function testDonateInventoryPositionIncrease() public {}
-    // function testDonateInventoryCombinePositions() public {}
-    // function testDonateLiquidityPositionIncrease() public {}
-    // function testDonateLiquidityCombinePositions() public {}
-    // function testDonateBuyNftsFromPool() public {}
-    // function testDonateMintVToken() public {}
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
+    //                  EXTERNAL DONATION MANAGEMENT
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´*/
     //                  VIEW FUNCTIONS
